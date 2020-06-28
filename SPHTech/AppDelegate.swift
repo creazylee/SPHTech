@@ -18,8 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds);
         
         let vc = ChartListViewController.init(nibName: "ChartListViewController", bundle: nil);
+        let nav = BaseNavigationViewController.init(rootViewController: vc);
         
-        self.window?.rootViewController = vc;
+        self.window?.rootViewController = nav;
         self.window?.makeKeyAndVisible();
         
         return true

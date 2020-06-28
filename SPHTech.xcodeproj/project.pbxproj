@@ -25,6 +25,23 @@
 		77EBB3DC24A834CC00E39504 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB3DB24A834CC00E39504 /* BaseNavigationViewController.swift */; };
 		77EBB3DD24A834CC00E39504 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB3DB24A834CC00E39504 /* BaseNavigationViewController.swift */; };
 		77EBB3DE24A834CC00E39504 /* BaseNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB3DB24A834CC00E39504 /* BaseNavigationViewController.swift */; };
+		77EBB3FF24A85BE900E39504 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB3FE24A85BE900E39504 /* ApiManager.swift */; };
+		77EBB40024A85BE900E39504 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB3FE24A85BE900E39504 /* ApiManager.swift */; };
+		77EBB40124A85BE900E39504 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB3FE24A85BE900E39504 /* ApiManager.swift */; };
+		77EBB40324A8637700E39504 /* RxMoya+Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40224A8637700E39504 /* RxMoya+Provider.swift */; };
+		77EBB40424A8637700E39504 /* RxMoya+Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40224A8637700E39504 /* RxMoya+Provider.swift */; };
+		77EBB40524A8637700E39504 /* RxMoya+Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40224A8637700E39504 /* RxMoya+Provider.swift */; };
+		77EBB40724A86A6B00E39504 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40624A86A6B00E39504 /* Const.swift */; };
+		77EBB40824A86A6B00E39504 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40624A86A6B00E39504 /* Const.swift */; };
+		77EBB40924A86A6B00E39504 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40624A86A6B00E39504 /* Const.swift */; };
+		77EBB40F24A8710A00E39504 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40E24A8710A00E39504 /* ChartModel.swift */; };
+		77EBB41024A8710A00E39504 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40E24A8710A00E39504 /* ChartModel.swift */; };
+		77EBB41124A8710A00E39504 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40E24A8710A00E39504 /* ChartModel.swift */; };
+		77EBB41524A87C3500E39504 /* Observable+Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB41424A87C3500E39504 /* Observable+Mapper.swift */; };
+		77EBB41724A8817B00E39504 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB41624A8817B00E39504 /* RequestModel.swift */; };
+		77EBB41C24A88B9700E39504 /* ChartListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB41A24A88B9700E39504 /* ChartListCell.swift */; };
+		77EBB41D24A88B9700E39504 /* ChartListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77EBB41B24A88B9700E39504 /* ChartListCell.xib */; };
+		77EBB41F24A8AE6300E39504 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB41E24A8AE6300E39504 /* BaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +79,15 @@
 		77EBB3CC24A833EB00E39504 /* ChartListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChartListViewController.xib; sourceTree = "<group>"; };
 		77EBB3D724A834AC00E39504 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		77EBB3DB24A834CC00E39504 /* BaseNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationViewController.swift; sourceTree = "<group>"; };
+		77EBB3FE24A85BE900E39504 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		77EBB40224A8637700E39504 /* RxMoya+Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxMoya+Provider.swift"; sourceTree = "<group>"; };
+		77EBB40624A86A6B00E39504 /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		77EBB40E24A8710A00E39504 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartModel.swift; path = SPHTech/Operation/Net/ChartModel.swift; sourceTree = SOURCE_ROOT; };
+		77EBB41424A87C3500E39504 /* Observable+Mapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Mapper.swift"; sourceTree = "<group>"; };
+		77EBB41624A8817B00E39504 /* RequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestModel.swift; sourceTree = "<group>"; };
+		77EBB41A24A88B9700E39504 /* ChartListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ChartListCell.swift; path = SPHTech/Operation/Category/ChartListCell.swift; sourceTree = SOURCE_ROOT; };
+		77EBB41B24A88B9700E39504 /* ChartListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChartListCell.xib; path = SPHTech/Operation/Category/ChartListCell.xib; sourceTree = SOURCE_ROOT; };
+		77EBB41E24A8AE6300E39504 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BaseCell.swift; path = ../../../../../../../../Users/creazylee/Desktop/BaseCell.swift; sourceTree = "<group>"; };
 		F04A0C25330364001A80E8ED /* Pods_SPHTech.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SPHTech.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -124,6 +150,7 @@
 		77EBB39524A82B2000E39504 /* SPHTech */ = {
 			isa = PBXGroup;
 			children = (
+				77EBB3FA24A8411A00E39504 /* Components */,
 				77EBB3C624A833BD00E39504 /* Class */,
 				77EBB3EC24A8353200E39504 /* Config */,
 				77EBB3ED24A8353200E39504 /* Operation */,
@@ -175,6 +202,7 @@
 		77EBB3C824A833BD00E39504 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				77EBB40E24A8710A00E39504 /* ChartModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -191,6 +219,8 @@
 		77EBB3CA24A833BD00E39504 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				77EBB41A24A88B9700E39504 /* ChartListCell.swift */,
+				77EBB41B24A88B9700E39504 /* ChartListCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -224,6 +254,7 @@
 		77EBB3D624A834A200E39504 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				77EBB41E24A8AE6300E39504 /* BaseCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +262,7 @@
 		77EBB3EC24A8353200E39504 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				77EBB40624A86A6B00E39504 /* Const.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -238,8 +270,43 @@
 		77EBB3ED24A8353200E39504 /* Operation */ = {
 			isa = PBXGroup;
 			children = (
+				77EBB3FB24A8442000E39504 /* Category */,
+				77EBB3FC24A8442000E39504 /* Net */,
+				77EBB3FD24A8442000E39504 /* Tools */,
 			);
 			path = Operation;
+			sourceTree = "<group>";
+		};
+		77EBB3FA24A8411A00E39504 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		77EBB3FB24A8442000E39504 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				77EBB40224A8637700E39504 /* RxMoya+Provider.swift */,
+				77EBB41424A87C3500E39504 /* Observable+Mapper.swift */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		77EBB3FC24A8442000E39504 /* Net */ = {
+			isa = PBXGroup;
+			children = (
+				77EBB3FE24A85BE900E39504 /* ApiManager.swift */,
+				77EBB41624A8817B00E39504 /* RequestModel.swift */,
+			);
+			path = Net;
+			sourceTree = "<group>";
+		};
+		77EBB3FD24A8442000E39504 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		E2BF4DDEB71D29705A824712 /* Pods */ = {
@@ -357,6 +424,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EBB41D24A88B9700E39504 /* ChartListCell.xib in Resources */,
 				77EBB3D024A833EB00E39504 /* ChartListViewController.xib in Resources */,
 				77EBB3A324A82B2200E39504 /* LaunchScreen.storyboard in Resources */,
 				77EBB3A024A82B2200E39504 /* Assets.xcassets in Resources */,
@@ -428,10 +496,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EBB40324A8637700E39504 /* RxMoya+Provider.swift in Sources */,
 				77EBB3CD24A833EB00E39504 /* ChartListViewController.swift in Sources */,
 				77EBB39724A82B2000E39504 /* AppDelegate.swift in Sources */,
+				77EBB41524A87C3500E39504 /* Observable+Mapper.swift in Sources */,
+				77EBB41F24A8AE6300E39504 /* BaseCell.swift in Sources */,
+				77EBB3FF24A85BE900E39504 /* ApiManager.swift in Sources */,
+				77EBB41C24A88B9700E39504 /* ChartListCell.swift in Sources */,
+				77EBB41724A8817B00E39504 /* RequestModel.swift in Sources */,
 				77EBB3D824A834AC00E39504 /* BaseViewController.swift in Sources */,
 				77EBB3DC24A834CC00E39504 /* BaseNavigationViewController.swift in Sources */,
+				77EBB40F24A8710A00E39504 /* ChartModel.swift in Sources */,
+				77EBB40724A86A6B00E39504 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,10 +515,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EBB40424A8637700E39504 /* RxMoya+Provider.swift in Sources */,
 				77EBB3AE24A82B2200E39504 /* SPHTechTests.swift in Sources */,
 				77EBB3CE24A833EB00E39504 /* ChartListViewController.swift in Sources */,
+				77EBB40024A85BE900E39504 /* ApiManager.swift in Sources */,
 				77EBB3D924A834AC00E39504 /* BaseViewController.swift in Sources */,
 				77EBB3DD24A834CC00E39504 /* BaseNavigationViewController.swift in Sources */,
+				77EBB41024A8710A00E39504 /* ChartModel.swift in Sources */,
+				77EBB40824A86A6B00E39504 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,10 +530,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77EBB40524A8637700E39504 /* RxMoya+Provider.swift in Sources */,
 				77EBB3B924A82B2200E39504 /* SPHTechUITests.swift in Sources */,
 				77EBB3CF24A833EB00E39504 /* ChartListViewController.swift in Sources */,
+				77EBB40124A85BE900E39504 /* ApiManager.swift in Sources */,
 				77EBB3DA24A834AC00E39504 /* BaseViewController.swift in Sources */,
 				77EBB3DE24A834CC00E39504 /* BaseNavigationViewController.swift in Sources */,
+				77EBB41124A8710A00E39504 /* ChartModel.swift in Sources */,
+				77EBB40924A86A6B00E39504 /* Const.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,4 +4,6 @@ inhibit_all_warnings!
 
 target 'SPHTech' do
   pod 'Moya/RxSwift', '~> 14.0'
+  pod 'SwiftyJSON'
+  pod 'RealmSwift'
 end

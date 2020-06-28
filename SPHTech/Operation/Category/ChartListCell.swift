@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChartListCell: BaseCell {
+class ChartListCell: UITableViewCell {
 
     @IBOutlet weak var mValueLabel: UILabel!
     @IBOutlet weak var mTitleLabel: UILabel!
@@ -24,7 +24,7 @@ class ChartListCell: BaseCell {
         // Configure the view for the selected state
     }
     
-    override func parseData(_ data: Any) {
+    func parseData(_ data: Any) {
         let model: ChartRecordsModel = data as! ChartRecordsModel;
         self.mTitleLabel.text = model.quarter;
         self.mValueLabel.text = model.volume_of_mobile_data;

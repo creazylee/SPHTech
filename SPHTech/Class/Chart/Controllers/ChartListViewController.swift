@@ -10,17 +10,47 @@ import UIKit
 import Moya
 import RxSwift
 
-class ChartListViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate {
+class ChartListViewController: BaseViewController,UITableViewDataSource,UITableViewDelegate,LineChartViewDelegate {
+    func horizontalText(atIndex index: NSInteger) -> String {
+         return self.titleSource[index]
+    }
+    
+    func verticalUnitText() -> String {
+       return "/美元"
+    }
+    
+    func values() -> [CGFloat] {
+        return self.dataSource
+    }
+    
 
     @IBOutlet weak var mTable: UITableView!
-    var chartModel: ChartModel?
     
+    var v:FBLineChartView! = nil
+    
+    var chartModel: ChartModel?
     let requestModel = RequestModel()
     let disposeBag = DisposeBag()
-    
+    var dataSource:[CGFloat] = [CGFloat]()
+    var titleSource:[String] = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "SPHTech";
+        
+        self.dataSource = [645,546,695,654]
+        self.titleSource = ["6月1号","2","3","4"]
+        
+        v = FBLineChartView.init(frame: CGRect.init(x: 0, y: 0, width: ScreenWidth, height: 200), delegate: self)
+        v.Y = 100
+        self.view.addSubview(v)
+        
+//        delayAction(atime: 3) {
+//            self.dataSource = [20,56,84,92,41,65]
+//            self.v.setBackGColor(UIColor.init(RGBA: "#008B8B"))
+//            self.v.setUnitColor(UIColor.red)
+//            self.v.refreshUIData()
+//        }
+        
         self.mTable.register(UINib.init(nibName: "ChartListCell", bundle: nil), forCellReuseIdentifier: "ChartListCell")
         
         print("init");

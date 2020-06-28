@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow.init(frame: UIScreen.main.bounds);
         
-        let vc = ViewController.init();
+        let vc = ChartListViewController.init(nibName: "ChartListViewController", bundle: nil);
         
         self.window?.rootViewController = vc;
         self.window?.makeKeyAndVisible();

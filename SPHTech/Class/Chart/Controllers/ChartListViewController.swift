@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ChartListViewController.swift
 //  SPHTech
 //
 //  Created by creazylee on 2020/6/28.
@@ -8,11 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ChartListViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
 }
-

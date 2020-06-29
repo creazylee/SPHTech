@@ -8,14 +8,37 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-
+class BaseViewController: UIViewController,LoadAnimationViewDelegate {
+    
+    func loadAnimationViewNeedReloadView() {
+        
+    }
+        
+    private lazy var loadAnimationView: LoadAnimationView = {
+        let loadView = LoadAnimationView.init(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - NavigationHeight))
+        loadView.isHidden = true
+        loadView.backgroundColor = UIColor.white
+        loadView.delegate = self
+        self.view.addSubview(loadView)
+        return loadView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.edgesForExtendedLayout = []
     }
     
+    func showLoadAnimation() {
+        self.loadAnimationView.loadStatus = .loading
+    }
+    
+    func loadAnimationSuccess() {
+        self.loadAnimationView.loadStatus = .success
+    }
+    
+    func loadAnimationWithError() {
+        self.loadAnimationView.loadStatus = .error
+    }
 
     /*
     // MARK: - Navigation

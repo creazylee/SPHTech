@@ -17,7 +17,8 @@ public protocol Mapable {
 }
 
 /// 定义网络错误代码
-enum NetworkError: Swift.Error {
+enum NetworkResultCode: Swift.Error {
+    case Success //请求成功
     case NoMoyaResponse //response 错误
     case FailureHTTP //网络请求失败
     case NoData //没有数据
@@ -30,16 +31,21 @@ extension Observable {
         return T(jsonData: jsonData);
     }
     
-    func mapResponseToObject<T: Mapable>(_ type: T.Type) -> Observable<T?> {
+    func mapResponseToObject<T: Mapable>(_ type: T.Type) -> Observable<RepsonseModel<T>> {
         return map { representor in
+            var responseModel = RepsonseModel<T>.init()
             //检查是否是Moya.Response
             guard let response = representor as? Moya.Response else {
-                throw NetworkError.NoMoyaResponse
+                responseModel.code = .NoMoyaResponse
+                responseModel.errorMsg = "返回对象错误"
+                return responseModel
             }
             
             //检查是否是一次成功的响应
             guard ((200...209) ~= response.statusCode) else {
-                throw NetworkError.FailureHTTP
+                responseModel.code = .FailureHTTP
+                responseModel.errorMsg = "网络请求异常"
+                return responseModel
             }
             
             //将data转为JSON
@@ -48,49 +54,16 @@ extension Observable {
             //判断请求状态
             let code = json["success"].boolValue;
             if (code) {
-                return self.resultToJson(json["result"], ModelType: type)
-            }else {
-                throw NetworkError.NoData
-            }
-        }
-    }
-    
-    /// 数据为数组的用这个转
-    func mapResponseToArray<T: Mapable>(_ type: T.Type) -> Observable<[T]> {
-        return map { response in
-            guard let response = response as? Moya.Response else {
-                throw NetworkError.NoMoyaResponse
+                responseModel.code = .Success
+                responseModel.data = self.resultToJson(json["result"], ModelType: type)
+                
+                return responseModel
             }
             
-            guard ((200...209) ~= response.statusCode) else {
-                throw NetworkError.FailureHTTP
-            }
-            
-            let json = try! JSON.init(data: response.data)
-            let code = json["success"].boolValue;
-            if (code) {
-                    //建立一个模型数组(T为泛型)
-                    var objects = [T]()
-                    //获取数据包字段中的数据用JSON转为Array类型
-                    let objectsArrays = json["records"].array
-                    
-                    if let array = objectsArrays {
-                        //遍历数组
-                        for object in array {
-                            //将对象转为模型加入数组
-                            if let obj = self.resultToJson(object, ModelType:type) {
-                                objects.append(obj)
-                            }
-                        }
-                    return objects
-                }else {
-                    throw NetworkError.NoData
-                }
-            }else {
-                throw NetworkError.NoData
-            }
+            responseModel.code = NetworkResultCode.NoData
+            responseModel.errorMsg = "接口异常"
+            return responseModel
         }
     }
-
 }
 

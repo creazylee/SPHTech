@@ -9,17 +9,22 @@
 import Foundation
 import Moya
 import RxSwift
+import SwiftyJSON
 
 class RequestModel {
     private let provider = MoyaProvider<ApiManager>();
     
-    func loadData<T: Mapable>(_ model: T.Type, token: ApiManager) -> Observable<T?> {
+    func loadData<T: Mapable>(_ model: T.Type, token: ApiManager) -> Observable<RepsonseModel<T>> {
         return provider.offlineCacheRequest(token: token)
             .subscribeOn(ConcurrentDispatchQueueScheduler.init(qos: .default))
             .observeOn(MainScheduler.instance)
             .distinctUntilChanged()
-            .catchError { (error) -> Observable<Response> in
-                return Observable.empty()
-            }.mapResponseToObject(T.self)
+            .mapResponseToObject(T.self)
     }
+}
+
+struct RepsonseModel<T: Mapable> {
+    var code: NetworkResultCode!
+    var errorMsg: String?
+    var data: T?
 }

@@ -34,14 +34,26 @@ class ChartListViewController: BaseViewController,UITableViewDataSource,UITableV
         
         self.mTable.register(UINib.init(nibName: "ChartListCell", bundle: nil), forCellReuseIdentifier: "ChartListCell")
         
-        requestModel.loadData(ChartModel.self, token: ApiManager.datastore_search(resource_id: "a807b7ab-6cad-4aa6-87d0-e283a7353a0f", limit: 100)).subscribe( onNext: { event in
-            print(event?.resource_id ?? "")
-            //处理数据
-            self.chartModel = event;
-            self.mTable.reloadData();
-        }).disposed(by: disposeBag)
+        self.loadAnimationViewNeedReloadView()
         
         initUI()
+    }
+    
+    override func loadAnimationViewNeedReloadView() {
+        self.showLoadAnimation()
+        requestModel.loadData(ChartModel.self, token: ApiManager.datastore_search(resource_id: "a807b7ab-6cad-4aa6-87d0-e283a7353a0f", limit: 100)).subscribe( onNext: { event in
+            self.loadAnimationSuccess()
+            if event.code == NetworkResultCode.Success {
+                //请求成功
+                self.chartModel = event.data;
+            }else {
+                self.loadAnimationWithError()
+                self.chartModel = nil;
+            }
+            //处理数据
+            self.mTable.reloadData();
+            
+        }).disposed(by: disposeBag)
     }
     
     func initUI() {

@@ -23,8 +23,10 @@ extension MoyaProvider {
                         print("request success")
                         break
                     case let .failure(error):
-                        observer.onError(error)
-                        print(error)
+                        let reponse = Response.init(statusCode: -999, data: error.errorDescription?.data(using: String.Encoding.utf8) ?? Data.init())
+                        observer.onNext(reponse)
+                        observer.onCompleted()
+                        print("request error")
                         break
                 }
             }

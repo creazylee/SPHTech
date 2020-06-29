@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChartListCell: UITableViewCell {
+class ChartListCell: BaseCell {
 
     @IBOutlet weak var mValueLabel: UILabel!
     @IBOutlet weak var mTitleLabel: UILabel!
@@ -16,15 +16,15 @@ class ChartListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        self.selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
-    func parseData(_ data: Any) {
+    override func parseData(_ data: Any) {
         let model: ChartRecordsModel = data as! ChartRecordsModel;
         self.mTitleLabel.text = model.quarter;
         self.mValueLabel.text = model.volume_of_mobile_data;

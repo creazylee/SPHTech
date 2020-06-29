@@ -29,14 +29,17 @@ struct ChartModel:Mapable {
             //将对象转为模型加入数组
             let obj: ChartRecordsModel = ChartRecordsModel(jsonData: object);
             let dateList = obj.quarter.components(separatedBy: "-");//将quarter分割成年，季度
+            // 拆分数据并过滤d2008-2018年的数据
             if dateList.count == 2 {
                 let year = dateList[0];// 年
-//                let quarter = dateList[1];//季度
+                if year.toInt() < 2008 || year.toInt() > 2018 {
+                    continue
+                }
                 var tmpList = tmpModel[year] ?? Array<ChartRecordsModel>();
                 tmpList.append(obj);
                 tmpModel.updateValue(tmpList, forKey: year);
+                objects.append(obj)
             }
-            objects.append(obj)
         }
         
         self.dataModel = tmpModel;

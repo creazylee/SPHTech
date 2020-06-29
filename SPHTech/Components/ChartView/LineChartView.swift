@@ -65,6 +65,8 @@ class LineChartView: UIView {
     var circleFillColor: UIColor = UIColor.white
     /// 折线关键点数据是否显示
     var showLineData: Bool = true
+    /// 是否显示折线关键点下降警示
+    var showDecline: Bool = true
     /// 关键点数据文本显示宽度
     var dataTextWidth: CGFloat = 0
     
@@ -259,7 +261,40 @@ class LineChartView: UIView {
                 numLabel.frame = CGRect.init(x: point.cgPointValue.x - self.dataTextWidth / 2, y: point.cgPointValue.y - 18, width: self.dataTextWidth, height: self.textFontSize)
                 self.addSubview(numLabel)
             }
+            
+            if (self.showDecline) {
+                if i != 0 && pointsArr.count > 1 {
+                    //不是第一个，且总数据大于1条
+                    var index = i;
+                    if (self.toCenter && self.supplement) {
+                        index = i - 1;
+                    }
+                    
+                    let preLineData = self.lineDataAry[index-1]
+                    let lineData = self.lineDataAry[index]
+                    if lineData < preLineData {
+                        //下降,展示图片
+                        let declineImageView = UIImageView.init(image: UIImage.init(named: "chart-decline"))
+                        declineImageView.frame = CGRect.init(x: point.cgPointValue.x - 11, y: point.cgPointValue.y + 4, width: 22, height: 22)
+                        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(tapDeclineImageView(tapGesture:)))
+                        declineImageView.addGestureRecognizer(tapGesture)
+                        declineImageView.isUserInteractionEnabled = true
+                        declineImageView.tag = index
+                        self.addSubview(declineImageView)
+                    }
+                }
+            }
         }
+    }
+    
+    @objc func tapDeclineImageView(tapGesture: UITapGestureRecognizer) {
+        print("下降")
+        let tapView = tapGesture.view
+        let index = tapView?.tag ?? 0
+        let alertController = UIAlertController.init(title: "提示", message: String.init(format: "您点击了下降警示，位于%d节点", index+1), preferredStyle: .alert)
+        let okAction = UIAlertAction.init(title: "确定", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)
     }
     
     func createLabel(textColor: UIColor, textAlignment: NSTextAlignment) -> UILabel {

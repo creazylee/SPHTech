@@ -25,5 +25,7 @@ class BaseCell: UITableViewCell {
        
     }
     
-
+    func parseData(_ data: Any, indexPath: IndexPath) {
+       
+    }
 }

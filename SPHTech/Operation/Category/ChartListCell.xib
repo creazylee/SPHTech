@@ -29,20 +29,32 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chart-decline" translatesAutoresizingMaskIntoConstraints="NO" id="nP3-Qg-cb1">
+                        <rect key="frame" x="307" y="-7" width="20" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="nlL-1c-ieu"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="nP3-Qg-cb1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="5xz-Mn-Re6"/>
                     <constraint firstItem="75X-VV-hOR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8ND-MG-ZRt"/>
                     <constraint firstAttribute="trailing" secondItem="Y8G-DQ-Wt7" secondAttribute="trailing" constant="15" id="9YC-7X-xl6"/>
                     <constraint firstItem="Y8G-DQ-Wt7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="AlU-q2-aSn"/>
+                    <constraint firstItem="Y8G-DQ-Wt7" firstAttribute="leading" secondItem="nP3-Qg-cb1" secondAttribute="trailing" constant="6" id="IBh-BJ-9wm"/>
                     <constraint firstItem="75X-VV-hOR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Prt-ab-ShJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="mDeclineImageView" destination="nP3-Qg-cb1" id="79b-YB-dq6"/>
                 <outlet property="mTitleLabel" destination="75X-VV-hOR" id="HM4-1Z-67Y"/>
                 <outlet property="mValueLabel" destination="Y8G-DQ-Wt7" id="e2j-Ja-3xU"/>
             </connections>
-            <point key="canvasLocation" x="-51.449275362318843" y="55.580357142857139"/>
+            <point key="canvasLocation" x="-128" y="55"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="chart-decline" width="48" height="48"/>
+    </resources>
 </document>

@@ -93,11 +93,11 @@ class ChartListViewController: BaseViewController,UITableViewDataSource,UITableV
             var cell: LineChartCell? = tableView.dequeueReusableCell(withIdentifier: cellID) as? LineChartCell
             if cell == nil {
                 cell = LineChartCell.init(style: .default, reuseIdentifier: cellID)
+                let key = self.chartModel?.yearKeys[indexPath.section] ?? "";
+                let values = self.chartModel?.dataModel?[key] ?? [];
+                //创建时复制，避免重用时多次赋值
+                cell?.parseData(values)
             }
-            let key = self.chartModel?.yearKeys[indexPath.section] ?? "";
-            let values = self.chartModel?.dataModel?[key] ?? [];
-            
-            cell?.parseData(values)
             
             return cell!
         }
@@ -105,7 +105,7 @@ class ChartListViewController: BaseViewController,UITableViewDataSource,UITableV
         let cell: ChartListCell = tableView.dequeueReusableCell(withIdentifier: "ChartListCell", for: indexPath) as! ChartListCell
         let key = self.chartModel?.yearKeys[indexPath.section] ?? "";
         let values = self.chartModel?.dataModel?[key] ?? [];
-        cell.parseData(values[indexPath.row])
+        cell.parseData(values, indexPath: indexPath)
         
         return cell;
     }

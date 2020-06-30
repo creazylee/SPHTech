@@ -42,3 +42,24 @@ extension String:TypeConvert {
     }
 }
 
+extension Dictionary: TypeConvert {
+    /// 按ascii排序后的md5
+    func sortWithASCIIMD5Str() -> String {
+        let params: Dictionary<String, Any> = self as! Dictionary<String, Any>
+        
+        let sortDict = params.sorted { (arg0, arg1) -> Bool in
+            let v = arg0.key.compare(arg1.key)
+            if(v == .orderedAscending) {
+                return false
+            }
+            return true
+        }
+        var str: String = ""
+        for (key, value) in sortDict {
+            str = str + "\(key)=\(value)"
+        }
+        
+        return str
+    }
+}
+

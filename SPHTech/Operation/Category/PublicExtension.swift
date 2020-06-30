@@ -9,6 +9,7 @@
 import Foundation
 import CoreGraphics
 import UIKit
+import CommonCrypto
 
 extension UIColor {
     class func hexColor(_ hexString: String) -> UIColor {
@@ -57,6 +58,13 @@ extension String {
         let strSize = statusLabelText.boundingRect(with: size, options: .usesLineFragmentOrigin, attributes: dic, context:nil).size
         
         return strSize.width + 5
+    }
+    
+    var md5:String {
+        let utf8 = cString(using: .utf8)
+        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+                CC_MD5(utf8, CC_LONG(utf8!.count - 1), &digest)
+        return digest.reduce("") { $0 + String(format:"%02X", $1) }
     }
 
 }

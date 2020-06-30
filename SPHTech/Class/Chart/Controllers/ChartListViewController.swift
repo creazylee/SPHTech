@@ -47,8 +47,10 @@ class ChartListViewController: BaseViewController,UITableViewDataSource,UITableV
                 //请求成功
                 self.chartModel = event.data;
             }else {
-                self.loadAnimationWithError()
-                self.chartModel = nil;
+                if self.chartModel == nil {
+                    self.loadAnimationWithError()
+                    self.chartModel = nil;
+                }
             }
             //处理数据
             self.mTable.reloadData();

@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = nav;
         self.window?.makeKeyAndVisible();
         
+        DBConfig.createDB()
+        
         return true
     }
 }

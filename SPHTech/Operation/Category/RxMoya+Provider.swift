@@ -18,7 +18,7 @@ extension MoyaProvider {
             var key = token.baseURL.absoluteString + token.path
             switch token.task {
             case .requestParameters(let parameters, _):
-                let sortStr = parameters.sortWithASCIIMD5Str()
+                let sortStr = parameters.toParamsAndSort()
                 key += sortStr
                 break
             default:
@@ -26,17 +26,22 @@ extension MoyaProvider {
             }
             
             key = key.md5
-            
-            let realm = try! Realm()
-            let pre = NSPredicate.init(format: "key = %@", key)
-            let cacheResponse = realm.objects(ApiCacheModel.self).filter(pre)
-            
-            if cacheResponse.count != 0 {
-                let filterResult = cacheResponse[0];
-                //还原成response并返回
-                let createResponse = Response.init(statusCode: filterResult.statusCode, data: filterResult.data!)
-                observer.onNext(createResponse)
+            #if NotTests
+            let cc = ApiCacheModel.self
+            let c = cc.description()
+            if !c.hasPrefix("SPHTechTests") {
+                let classs = ApiCacheModel.self
+                let realm = try! Realm()
+                let pre = NSPredicate.init(format: "key = %@", key)
+                let cacheResponse = realm.objects(classs).filter(pre)
+                if cacheResponse.count != 0 {
+                    let filterResult = cacheResponse[0];
+                    //还原成response并返回
+                    let createResponse = Response.init(statusCode: filterResult.statusCode, data: filterResult.data!)
+                    observer.onNext(createResponse)
+                }
             }
+            #endif
             
             let cancelToken = self?.request(token) { Result in
                 switch Result {
@@ -44,14 +49,16 @@ extension MoyaProvider {
                         observer.onNext(response)
                         observer.onCompleted()
                         //增加缓存
-                        let realm = try! Realm()
-                        let cache = ApiCacheModel()
-                        cache.data = response.data
-                        cache.statusCode = response.statusCode
-                        cache.key = key
-                        try! realm.write {
-                            realm.add(cache, update: .all)
-                        }
+                        #if NotTests
+                            let realm = try! Realm()
+                            let cache = ApiCacheModel()
+                            cache.data = response.data
+                            cache.statusCode = response.statusCode
+                            cache.key = key
+                            try! realm.write {
+                                realm.add(cache, update: .all)
+                            }
+                        #endif
                         print("request success")
                         break
                     case let .failure(error):

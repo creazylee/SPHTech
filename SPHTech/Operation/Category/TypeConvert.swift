@@ -9,9 +9,7 @@
 import Foundation
 import CoreGraphics
 
-protocol TypeConvert {
-    
-}
+protocol TypeConvert {}
 extension Int:TypeConvert {
     func toString() -> String {
         return "\(self)"
@@ -24,7 +22,7 @@ extension Int:TypeConvert {
 
 extension CGFloat:TypeConvert {
     func toString() -> String {
-        return String.init(format: "%f", self)
+        return "\(self)"
     }
     
     func toString(_ decimal: Int) -> String {
@@ -34,7 +32,8 @@ extension CGFloat:TypeConvert {
 
 extension String:TypeConvert {
     func toFloat() -> CGFloat {
-        return CGFloat((self as NSString).floatValue)
+        let d = Double(self)
+        return CGFloat(d ?? 0)
     }
     
     func toInt() -> Int {
@@ -43,20 +42,25 @@ extension String:TypeConvert {
 }
 
 extension Dictionary: TypeConvert {
-    /// 按ascii排序后的md5
-    func sortWithASCIIMD5Str() -> String {
+    /// 按ascii排序后按key=value拼接
+    func toParamsAndSort() -> String {
         let params: Dictionary<String, Any> = self as! Dictionary<String, Any>
         
         let sortDict = params.sorted { (arg0, arg1) -> Bool in
             let v = arg0.key.compare(arg1.key)
-            if(v == .orderedAscending) {
+            if(v == .orderedDescending) {
                 return false
             }
             return true
         }
         var str: String = ""
+        var i = 0
         for (key, value) in sortDict {
+            if i != 0 {
+                str = str + "&"
+            }
             str = str + "\(key)=\(value)"
+            i += 1
         }
         
         return str

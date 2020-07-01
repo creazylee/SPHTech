@@ -17,10 +17,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         self.window = UIWindow.init(frame: UIScreen.main.bounds);
         
-        let vc = ViewController.init();
+        let vc = ChartListViewController.init(nibName: "ChartListViewController", bundle: nil);
+        let nav = BaseNavigationViewController.init(rootViewController: vc);
         
-        self.window?.rootViewController = vc;
+        self.window?.rootViewController = nav;
         self.window?.makeKeyAndVisible();
+        
+        DBConfig.createDB()
         
         return true
     }

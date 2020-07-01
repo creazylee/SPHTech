@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  BaseNavigationViewController.swift
 //  SPHTech
 //
 //  Created by creazylee on 2020/6/28.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BaseNavigationViewController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationBar.isTranslucent = false
     }
 }
-

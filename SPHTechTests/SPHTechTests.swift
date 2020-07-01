@@ -51,7 +51,9 @@ class SPHTechTests: XCTestCase {
         let ex = XCTestExpectation.init(description: "netsuccess")
         
         requestModel.loadData(ChartModel.self, token: ApiManager.datastore_search(resource_id: "a807b7ab-6cad-4aa6-87d0-e283a7353a0f", limit: 10)).subscribe( onNext: { event in
-            XCTAssertEqual(event.code, NetworkResultCode.Success, "无数据")
+            XCTAssertFalse(event.code == NetworkResultCode.NoData, "服务器错误，无数据返回")
+            XCTAssertFalse(event.code == NetworkResultCode.FailureHTTP, "网络错误")
+            XCTAssertFalse(event.code == NetworkResultCode.NoMoyaResponse, "系统内部错误")
             assert(event.data != nil, "无数据")
             XCTAssertEqual(event.data?.limit, 10, "数据不足")
             ex.fulfill()

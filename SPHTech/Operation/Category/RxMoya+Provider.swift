@@ -27,19 +27,15 @@ extension MoyaProvider {
             
             key = key.md5
             #if NotTests
-            let cc = ApiCacheModel.self
-            let c = cc.description()
-            if !c.hasPrefix("SPHTechTests") {
-                let classs = ApiCacheModel.self
-                let realm = try! Realm()
-                let pre = NSPredicate.init(format: "key = %@", key)
-                let cacheResponse = realm.objects(classs).filter(pre)
-                if cacheResponse.count != 0 {
-                    let filterResult = cacheResponse[0];
-                    //还原成response并返回
-                    let createResponse = Response.init(statusCode: filterResult.statusCode, data: filterResult.data!)
-                    observer.onNext(createResponse)
-                }
+            let classs = ApiCacheModel.self
+            let realm = try! Realm()
+            let pre = NSPredicate.init(format: "key = %@", key)
+            let cacheResponse = realm.objects(classs).filter(pre)
+            if cacheResponse.count != 0 {
+                let filterResult = cacheResponse[0];
+                //还原成response并返回
+                let createResponse = Response.init(statusCode: filterResult.statusCode, data: filterResult.data!)
+                observer.onNext(createResponse)
             }
             #endif
             

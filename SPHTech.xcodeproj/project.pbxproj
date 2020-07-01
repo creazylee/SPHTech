@@ -35,10 +35,10 @@
 		7772929C24AB0CA7006C6754 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB41624A8817B00E39504 /* RequestModel.swift */; };
 		7772929E24AB0CA8006C6754 /* RequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB41624A8817B00E39504 /* RequestModel.swift */; };
 		777292A724AB17D8006C6754 /* ApiCacheModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7772928224AAD279006C6754 /* ApiCacheModel.swift */; };
-		777292AB24AB1C3F006C6754 /* ApiCacheModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7772928224AAD279006C6754 /* ApiCacheModel.swift */; };
 		777292AC24AB1C43006C6754 /* RxMoya+Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40224A8637700E39504 /* RxMoya+Provider.swift */; };
 		777292AD24AB1C43006C6754 /* RxMoya+Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77EBB40224A8637700E39504 /* RxMoya+Provider.swift */; };
-		777292AE24AB1EB4006C6754 /* ApiCacheModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7772928224AAD279006C6754 /* ApiCacheModel.swift */; };
+		7773E29124AC8BDD00B755CD /* ChartListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77EBB41B24A88B9700E39504 /* ChartListCell.xib */; };
+		7773E29224AC8BDE00B755CD /* ChartListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77EBB41B24A88B9700E39504 /* ChartListCell.xib */; };
 		77BEB1D524A9767B0087505F /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEB1D424A9767B0087505F /* BaseCell.swift */; };
 		77BEB1D724A9788D0087505F /* TypeConvert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEB1D624A9788D0087505F /* TypeConvert.swift */; };
 		77BEB1D924A97B2D0087505F /* PublicExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77BEB1D824A97B2D0087505F /* PublicExtension.swift */; };
@@ -517,6 +517,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7773E29124AC8BDD00B755CD /* ChartListCell.xib in Resources */,
 				77EBB3D124A833EB00E39504 /* ChartListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -525,6 +526,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7773E29224AC8BDE00B755CD /* ChartListCell.xib in Resources */,
 				77EBB3D224A833EB00E39504 /* ChartListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -683,7 +685,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7772929124AB0C99006C6754 /* LineChartCell.swift in Sources */,
-				777292AE24AB1EB4006C6754 /* ApiCacheModel.swift in Sources */,
 				7772929324AB0C9D006C6754 /* Config.swift in Sources */,
 				7772928724AB09CF006C6754 /* SPHTechExtensionTests.swift in Sources */,
 				7772929C24AB0CA7006C6754 /* RequestModel.swift in Sources */,
@@ -717,7 +718,6 @@
 				7772929E24AB0CA8006C6754 /* RequestModel.swift in Sources */,
 				77EBB3DA24A834AC00E39504 /* BaseViewController.swift in Sources */,
 				77EBB3DE24A834CC00E39504 /* BaseNavigationViewController.swift in Sources */,
-				777292AB24AB1C3F006C6754 /* ApiCacheModel.swift in Sources */,
 				7772929024AB0C97006C6754 /* ChartListCell.swift in Sources */,
 				7772929424AB0C9E006C6754 /* Config.swift in Sources */,
 				7772928C24AB0C8A006C6754 /* LineChartView.swift in Sources */,
@@ -883,7 +883,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DNotTests";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.SPHTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -902,7 +902,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DNotTests";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.SPHTech;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -924,7 +924,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DNotTests";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.SPHTechTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -947,7 +947,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS -DNotTests";
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.SPHTechTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -968,6 +968,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.SPHTechUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -988,6 +989,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lee.SPHTechUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

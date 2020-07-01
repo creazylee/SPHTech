@@ -14,6 +14,7 @@ struct ChartModel:Mapable {
     let resource_id: String
     let fileds: Array<Any>
     let records: Array<ChartRecordsModel>
+    let limit: Int
    
     var dataModel: Dictionary<String, Array<ChartRecordsModel>>?
     
@@ -47,7 +48,8 @@ struct ChartModel:Mapable {
         self.yearKeys = (self.dataModel?.keys.sorted(by: >))!;
         
         self.records = objects;
-        self.fileds = jsonData["records"].array ?? [];
+        self.fileds = jsonData["fields"].array ?? [];
+        self.limit = jsonData["limit"].intValue
     }
 }
 
@@ -60,5 +62,11 @@ struct ChartRecordsModel:Mapable {
         self.volume_of_mobile_data = jsonData["volume_of_mobile_data"].stringValue;
         self.quarter = jsonData["quarter"].stringValue;
         self._id = jsonData["_id"].intValue;
+    }
+    
+    init(quarter: String, _id: Int, volume_of_mobile_data: String) {
+        self.quarter = quarter
+        self.volume_of_mobile_data = volume_of_mobile_data
+        self._id = _id
     }
 }

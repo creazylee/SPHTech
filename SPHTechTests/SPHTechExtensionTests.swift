@@ -98,4 +98,49 @@ class SPHTechExtensionTests: XCTestCase {
         let c = ["B":"2","2":"1","C":"3"].toParamsAndSort()
         XCTAssertEqual(c, "2=1&B=2&C=3", "排序错误")
     }
+    
+    /// 测试16进制字符串转uicolor
+    func testHexString_Convert_UIColor() {
+        /// 错误的颜色代码，默认转换为透明色
+        let color = UIColor.hexColor("#00")
+        XCTAssertEqual(color, UIColor.clear, "异常处理失败")
+        /// 正确的颜色转换
+        let color1 = UIColor.hexColor("#FF0000")
+        XCTAssertEqual(color1, UIColor.red, "红色转换错误")
+        /// 超过正常位数的转换
+        let color2 = UIColor.hexColor("#FF0009988")
+        XCTAssertEqual(color2, UIColor.clear, "异常处理失败")
+        /// 正确的颜色转换
+        let color3 = UIColor.hexColor("0XFF0000")
+        XCTAssertEqual(color3, UIColor.red, "红色转换错误")
+    }
+    
+    /// 获取文字宽度
+    func testString_Convert_Width() {
+        let str = "长度计算"
+        let a = str.getTextWidth(fontSize: 12)
+        XCTAssertEqual(a, 4*12+5, accuracy: 2*4, "宽度计算超过预期")
+        
+        let str1 = "12344"
+        let a1 = str1.getTextWidth(fontSize: 12)
+        XCTAssertEqual(a1, 5*12*0.6+5, accuracy: 2*5, "宽度计算超过预期")
+        
+        /// 空字符串计算
+        let a2 = "".getTextWidth(fontSize: 12)
+        XCTAssertEqual(a2, 5, accuracy: 0, "宽度计算超过预期")
+    }
+    // md5
+    func testStringMD5() {
+        let a = "md5".md5
+        assert(a.count == 32, "md5失败")
+    }
+    
+    /// 获取2个点的中心点
+    func testUIBezierPath_get_centerPoint() {
+        let p1 = CGPoint.init(x: 10, y: 20)
+        let p2 = CGPoint.init(x: 20, y: 20)
+//        let p3 =
+        
+    }
+    
 }

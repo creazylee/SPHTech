@@ -72,7 +72,7 @@ extension String {
 private var kContractionFactorKey: String = "kContractionFactorKey"
 
 extension UIBezierPath {
-    var contractionFactor: CGFloat {
+     private var contractionFactor: CGFloat {
         get {
             let contractionFactorAssociatedObject = objc_getAssociatedObject(self, &kContractionFactorKey);
             if (contractionFactorAssociatedObject == nil) {
@@ -86,19 +86,19 @@ extension UIBezierPath {
         }
     }
     
-    func ControlPointForTheBezierCanThrough3Point(point1: CGPoint, point2: CGPoint, point3: CGPoint) -> CGPoint {
+    private func ControlPointForTheBezierCanThrough3Point(point1: CGPoint, point2: CGPoint, point3: CGPoint) -> CGPoint {
         return CGPoint.init(x: 2 * point2.x - (point1.x + point3.x) / 2, y: 2 * point2.y - (point1.y + point3.y) / 2)
     }
     
-    func CenterPointOf(point1: CGPoint,  point2: CGPoint) -> CGPoint {
+    private func CenterPointOf(point1: CGPoint,  point2: CGPoint) -> CGPoint {
         return CGPoint.init(x: (point1.x + point2.x) / 2, y: (point1.y + point2.y) / 2);
     }
     
-    func DistanceBetweenPoint(point1: CGPoint,point2: CGPoint) -> CGFloat {
+    private func DistanceBetweenPoint(point1: CGPoint,point2: CGPoint) -> CGFloat {
         return sqrt((point1.x - point2.x) * (point1.x - point2.x) + (point1.y - point2.y) * (point1.y - point2.y));
     }
     
-    func ObliqueAngleOfStraightThrough(point1: CGPoint, point2: CGPoint) -> CGFloat {
+    private func ObliqueAngleOfStraightThrough(point1: CGPoint, point2: CGPoint) -> CGFloat {
         var obliqueRatio: CGFloat = 0;
         var obliqueAngle: CGFloat = 0;
         

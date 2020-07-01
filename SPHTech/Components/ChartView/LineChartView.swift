@@ -279,7 +279,7 @@ class LineChartView: UIView {
                         let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(tapDeclineImageView(tapGesture:)))
                         declineImageView.addGestureRecognizer(tapGesture)
                         declineImageView.isUserInteractionEnabled = true
-                        declineImageView.tag = index
+                        declineImageView.tag = index + 100
                         self.addSubview(declineImageView)
                     }
                 }
@@ -291,7 +291,7 @@ class LineChartView: UIView {
         print("下降")
         let tapView = tapGesture.view
         let index = tapView?.tag ?? 0
-        let alertController = UIAlertController.init(title: "提示", message: String.init(format: "您点击了下降警示，位于%d节点", index+1), preferredStyle: .alert)
+        let alertController = UIAlertController.init(title: "提示", message: String.init(format: "您点击了下降警示，位于%d节点", index+1-100), preferredStyle: .alert)
         let okAction = UIAlertAction.init(title: "确定", style: .default, handler: nil)
         alertController.addAction(okAction)
         UIApplication.shared.keyWindow?.rootViewController?.present(alertController, animated: true, completion: nil)

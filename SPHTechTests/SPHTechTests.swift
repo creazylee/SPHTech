@@ -88,10 +88,10 @@ class SPHTechTests: XCTestCase {
             let error = NSError.init(domain: url, code: 404, userInfo: ["description":"未找到资源"])
             return Endpoint.init(url: url, sampleResponseClosure: {.networkError(error)}, method: target.method, task: target.task, httpHeaderFields: nil)
         }
-        // 所有错误码会被统一处理为999
+        
         let apiProvider = MoyaProvider<ApiManager>(endpointClosure: endpointClosure, stubClosure: MoyaProvider.immediatelyStub)
         apiProvider.offlineCacheRequest(token: ApiManager.datastore_search(resource_id: "a807b7ab-6cad-4aa6-87d0-e283a7353a0f", limit: 10)).subscribe(onNext: { event in
-            assert(event.statusCode == -999, NSString(data:event.data! ,encoding: String.Encoding.utf8.rawValue)   )
+            assert(event.statusCode == -999, NSString(data:event.data ,encoding: String.Encoding.utf8.rawValue)! as String)
             ex.fulfill()
             }).disposed(by: disposeBag)
         self.wait(for: [ex], timeout: 30)

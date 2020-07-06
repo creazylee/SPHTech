@@ -9,6 +9,8 @@
 import XCTest
 import RealmSwift
 import RxSwift
+import Moya
+
 @testable import SPHTech
 
 class SPHTechTests: XCTestCase {
@@ -46,6 +48,55 @@ class SPHTechTests: XCTestCase {
         self.wait(for: [ex], timeout: 30)
     }
     
+    func testMockApiRequest() {
+        let ex = XCTestExpectation.init(description: "mock success")
+        
+        let endpointClosure = {(target: ApiManager) -> Endpoint in
+            let url = target.baseURL.appendingPathComponent(target.path).absoluteString
+            return Endpoint.init(url: url, sampleResponseClosure: {.networkResponse(200, target.sampleData)}, method: target.method, task: target.task, httpHeaderFields: nil)
+        }
+        
+        let apiProvider = MoyaProvider<ApiManager>(endpointClosure: endpointClosure, stubClosure: MoyaProvider.immediatelyStub)
+        apiProvider.offlineCacheRequest(token: ApiManager.datastore_search(resource_id: "a807b7ab-6cad-4aa6-87d0-e283a7353a0f", limit: 10)).subscribe(onNext: { event in
+            assert(event.statusCode == 200, "请求成功")
+            ex.fulfill()
+            }).disposed(by: disposeBag)
+        
+        self.wait(for: [ex], timeout: 30)
+    }
+    
+    func testMockAPIRequest_neterror() {
+        let ex = XCTestExpectation.init(description: "mock net error")
+        let endpointClosure = {(target: ApiManager) -> Endpoint in
+            let url = target.baseURL.appendingPathComponent(target.path).absoluteString
+            let error = NSError.init(domain: url, code: -999, userInfo: ["description":"网络错误"])
+            return Endpoint.init(url: url, sampleResponseClosure: {.networkError(error)}, method: target.method, task: target.task, httpHeaderFields: nil)
+        }
+        
+        let apiProvider = MoyaProvider<ApiManager>(endpointClosure: endpointClosure, stubClosure: MoyaProvider.immediatelyStub)
+        apiProvider.offlineCacheRequest(token: ApiManager.datastore_search(resource_id: "a807b7ab-6cad-4aa6-87d0-e283a7353a0f", limit: 10)).subscribe(onNext: { event in
+            assert(event.statusCode == -999, "网络错误")
+            ex.fulfill()
+            }).disposed(by: disposeBag)
+        self.wait(for: [ex], timeout: 30)
+    }
+    
+    func testMockAPIRequest_resourceIdError() {
+        let ex = XCTestExpectation.init(description: "mock resourceid error")
+        let endpointClosure = {(target: ApiManager) -> Endpoint in
+            let url = target.baseURL.appendingPathComponent(target.path).absoluteString
+            let error = NSError.init(domain: url, code: 404, userInfo: ["description":"未找到资源"])
+            return Endpoint.init(url: url, sampleResponseClosure: {.networkError(error)}, method: target.method, task: target.task, httpHeaderFields: nil)
+        }
+        // 所有错误码会被统一处理为999
+        let apiProvider = MoyaProvider<ApiManager>(endpointClosure: endpointClosure, stubClosure: MoyaProvider.immediatelyStub)
+        apiProvider.offlineCacheRequest(token: ApiManager.datastore_search(resource_id: "a807b7ab-6cad-4aa6-87d0-e283a7353a0f", limit: 10)).subscribe(onNext: { event in
+            assert(event.statusCode == -999, NSString(data:event.data! ,encoding: String.Encoding.utf8.rawValue)   )
+            ex.fulfill()
+            }).disposed(by: disposeBag)
+        self.wait(for: [ex], timeout: 30)
+    }
+    
     /// 使用
     func testApiRequest() {
         let ex = XCTestExpectation.init(description: "netsuccess")
@@ -60,7 +111,6 @@ class SPHTechTests: XCTestCase {
         }).disposed(by: disposeBag)
         self.wait(for: [ex], timeout: 30)
     }
-    
     
     /// 测试下降图标能否正确显示
     func testCell_declineImage() {

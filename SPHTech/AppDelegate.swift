@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let nav = BaseNavigationViewController.init(rootViewController: vc);
         
         self.window?.rootViewController = nav;
-        self.window?.makeKeyAndVisible();
+        self.window?.makeKeyAndVisible();  
         
         DBConfig.createDB()
         
